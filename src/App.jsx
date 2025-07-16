@@ -1,11 +1,9 @@
+import Navbar from "./components/navbar.jsx"
 
 function App() {
-
   return (
     <>
-      <div>
-          Hallo DevTinder
-      </div>
+      <Navbar />
     </>
   )
 }
