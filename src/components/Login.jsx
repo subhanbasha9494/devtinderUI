@@ -21,7 +21,7 @@ const Login = () => {
       dispatch(addUser(res.data));
       return navigate("/feed");
     } catch (error) {
-      setError(error.response?.message || "Login failed. Please try again.");
+      setError(error.response?.data?.message || "Login failed. Please try again.");
     }
   };
   return (
