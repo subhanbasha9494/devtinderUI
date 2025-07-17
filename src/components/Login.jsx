@@ -8,6 +8,7 @@ import { API_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("rizzu@gmail.com");
   const [password, setPassword] = useState("Rizzu@2022");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogin = async () => {
@@ -16,12 +17,11 @@ const Login = () => {
         emailId,
         password,
       },
-      { withCredentials: true });
-      console.log("Login successful:", res.data);
+        { withCredentials: true });
       dispatch(addUser(res.data));
       return navigate("/feed");
     } catch (error) {
-      console.error("Login failed:", error);
+      setError(error.response?.message || "Login failed. Please try again.");
     }
   };
   return (
@@ -32,6 +32,7 @@ const Login = () => {
             <h2 className="card-title justify-center">Login</h2>
             <input type="text" className="input" placeholder="Email Id" value={emailId} onChange={(e) => setEmailId(e.target.value)} />
             <input type="password" className="input" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <p className="text-red-500">{error}</p>
             <div className="justify-center card-actions">
               <button className="btn btn-primary" onClick={handleLogin}>Login</button>
             </div>
