@@ -11,7 +11,7 @@ const Body = () => {
     const navigate = useNavigate();
     const userData = useSelector((state) => state);
     const fetchUser = async () => {
-        if (userData.user) return; // If user data is already present, skip fetching
+        if (userData) return; // If user data is already present, skip fetching
         try {
             const user = await axios.get(API_URL + '/profile/view', {
                 withCredentials: true
