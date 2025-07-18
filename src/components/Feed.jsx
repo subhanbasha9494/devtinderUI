@@ -9,7 +9,7 @@ const Feed = () => {
   const feed = useSelector((state) => state.feed);
   const dispatch = useDispatch();
   const getFeedData = async () => {
-    //if (feed) return; // If feed is already loaded, skip fetching
+     if (feed) return; // If feed is already loaded, skip fetching
     try {
       const response = await axios.get(API_URL + '/feed', { withCredentials: true }); // Adjust the endpoint as necessary
       const data = response.data;

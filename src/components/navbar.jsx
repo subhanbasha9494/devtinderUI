@@ -40,7 +40,8 @@ const Navbar = () => {
                                 <Link to="/profile" className="justify-between">
                                     Profile Name : {user?.firstName || "Guest"}
                                 </Link>
-                                <Link to="/settings">Settings</Link>
+                                <Link to="/requests">Requests</Link>
+                                <Link to="/connections">Connections</Link>
                                 <Link onClick={handleLogout}>Logout</Link>
                             </ul>
                         </div>
