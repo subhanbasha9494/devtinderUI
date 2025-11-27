@@ -2,20 +2,27 @@ import axios from "axios";
 import { useEffect } from "react";
 import { API_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import UserCard from './UserCard';
 import { addFeed } from "../utils/feedSlice";
 
 const Feed = () => {
   const feed = useSelector((state) => state.feed);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const getFeedData = async () => {
      if (feed) return; // If feed is already loaded, skip fetching
     try {
       const response = await axios.get(API_URL + '/feed', { withCredentials: true }); // Adjust the endpoint as necessary
       const data = response.data;
+      if (!data) {
+        navigate('/login');
+        return;
+      }
       dispatch(addFeed(data));
     } catch (error) {
       console.error('Error fetching feed data:', error);
+      navigate('/login');
     }
   };
 
